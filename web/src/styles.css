@@ -1,5 +1,5 @@
 /* Agent Factory control plane
-   Floating-island chrome on a Breakscale dark canvas: 32px schematic grid,
+   Flush chrome on a Breakscale dark canvas: 32px schematic grid,
    Lucide marks, and packet-flow dashes. */
 
 :root {
@@ -112,18 +112,13 @@ button { color: inherit; }
 
 .sidebar {
   position: fixed;
-  top: 5vh;
-  left: 5vw;
-  bottom: 5vh;
+  inset: 0 auto 0 0;
   z-index: 20;
   width: 244px;
   padding: 22px 14px 14px;
   display: flex;
   flex-direction: column;
   background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow);
   overflow-y: auto;
   overscroll-behavior: contain;
 }
@@ -197,9 +192,9 @@ button { color: inherit; }
 .main-shell {
   position: relative;
   z-index: 1;
-  margin-left: calc(244px + 10vw);
+  margin-left: 244px;
   min-height: 100vh;
-  padding: 5vh 5vw 5vh 0;
+  padding: 0;
 }
 
 .topbar {
@@ -207,7 +202,7 @@ button { color: inherit; }
   top: 0;
   z-index: 10;
   height: 58px;
-  padding: 0 0 0 8px;
+  padding: 0 16px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -216,12 +211,11 @@ button { color: inherit; }
 .topbar-title { flex: 1; font-size: 14px; font-weight: 500; }
 .mobile-menu { display: none !important; }
 .app-main {
-  min-height: calc(90vh - 58px);
+  min-height: calc(100vh - 58px);
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: var(--radius-xl);
+  border-radius: 0;
   background: var(--panel);
-  box-shadow: var(--shadow);
 }
 
 /* ---------- controls ---------- */
@@ -913,19 +907,16 @@ button { color: inherit; }
 
 @media (max-width: 760px) {
   .sidebar {
-    top: 12px;
-    left: 12px;
-    bottom: 12px;
     width: min(260px, calc(100vw - 48px));
     visibility: hidden;
-    transform: translateX(calc(-100% - 12px));
+    transform: translateX(-100%);
     transition: transform .15s ease, visibility 0s linear .15s;
   }
   .sidebar.sidebar-open { visibility: visible; transform: translateX(0); transition-delay: 0s; }
   .nav-scrim { display: block; }
-  .main-shell { margin-left: 0; padding: 12px 12px 0; }
+  .main-shell { margin-left: 0; padding: 0; }
   .topbar { padding: 0 12px; }
-  .app-main { min-height: calc(100vh - 58px); border-right: 0; border-bottom: 0; border-left: 0; border-radius: var(--radius-xl) var(--radius-xl) 0 0; }
+  .app-main { min-height: calc(100vh - 58px); border-right: 0; border-bottom: 0; border-left: 0; border-radius: 0; }
   .mobile-menu { display: inline-grid !important; }
   .page { padding: 22px 14px 48px; }
   .view-header { align-items: center; gap: 12px; }
