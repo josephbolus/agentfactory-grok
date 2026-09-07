@@ -40,24 +40,16 @@ function runMode(value: string | null): RunViewMode {
   return value === "list" || value === "table" ? "table" : "kanban";
 }
 
-function withChrome(path: string): string {
-  if (new URLSearchParams(window.location.search).get("chrome") !== "islands") return path;
-  const [pathname, search] = path.split("?");
-  const query = new URLSearchParams(search ?? "");
-  query.set("chrome", "islands");
-  return `${pathname}?${query}`;
-}
-
 function routePath(route: Route): string {
   switch (route.page) {
-    case "tasks": return withChrome(`/tasks${route.id ? `/${route.id}` : ""}${route.create ? "?new=true" : ""}`);
-    case "work": return withChrome(`/work${route.mode === "kanban" ? "" : `?view=${route.mode}`}`);
-    case "run-detail": return withChrome(`/work/${route.id}${route.mode === "kanban" ? "" : `?view=${route.mode}`}`);
-    case "workers": return withChrome("/workers");
-    case "worker": return withChrome(`/workers/${route.id}`);
-    case "repositories": return withChrome("/repositories");
-    case "repository": return withChrome(`/repositories/${route.id}`);
-    default: return withChrome("/overview");
+    case "tasks": return `/tasks${route.id ? `/${route.id}` : ""}${route.create ? "?new=true" : ""}`;
+    case "work": return `/work${route.mode === "kanban" ? "" : `?view=${route.mode}`}`;
+    case "run-detail": return `/work/${route.id}${route.mode === "kanban" ? "" : `?view=${route.mode}`}`;
+    case "workers": return "/workers";
+    case "worker": return `/workers/${route.id}`;
+    case "repositories": return "/repositories";
+    case "repository": return `/repositories/${route.id}`;
+    default: return "/overview";
   }
 }
 
@@ -78,8 +70,7 @@ export function App() {
     window.scrollTo({ top: 0, behavior: "instant" });
   };
   const activeRunMode = route.page === "work" || route.page === "run-detail" ? route.mode : "kanban";
-  const islands = new URLSearchParams(window.location.search).get("chrome") === "islands";
-  return <div className={islands ? "app-shell islands" : "app-shell"}>
+  return <div className="app-shell">
     <div className="canvas-grid" aria-hidden="true" />
     <svg className="canvas-flow" aria-hidden="true">
       <path className="canvas-flow-wire" d="M 32 128 H 2400 V 384 H 320 V 1600" />
