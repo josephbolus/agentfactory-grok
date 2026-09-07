@@ -97,7 +97,7 @@ body {
 @keyframes canvas-flow {
   to { stroke-dashoffset: -12; }
 }
-.app-shell > *:not(.canvas-grid):not(.canvas-flow) { position: relative; z-index: 1; }
+.canvas-grid, .canvas-flow { z-index: 0; }
 h1, h2, h3, p { margin-top: 0; }
 button, input, select, textarea { font: inherit; }
 button { color: inherit; }
@@ -121,6 +121,15 @@ button { color: inherit; }
   background: var(--panel);
   overflow-y: auto;
   overscroll-behavior: contain;
+}
+
+.app-shell.islands .sidebar {
+  top: 12px;
+  left: 12px;
+  bottom: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
 }
 
 .brand { display: flex; align-items: center; gap: 12px; padding: 4px 8px 28px; }
@@ -189,14 +198,22 @@ button { color: inherit; }
 }
 .local-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--succeeded); }
 
-.main-shell { margin-left: 244px; min-height: 100vh; padding: 12px 12px 12px 0; }
+.main-shell {
+  position: relative;
+  z-index: 1;
+  margin-left: 244px;
+  min-height: 100vh;
+  padding: 12px 12px 12px 0;
+}
+
+.app-shell.islands .main-shell { margin-left: 268px; padding: 12px 12px 12px 0; }
 
 .topbar {
   position: sticky;
   top: 0;
   z-index: 10;
   height: 58px;
-  padding: 0 20px;
+  padding: 0 0 0 8px;
   display: flex;
   align-items: center;
   gap: 10px;
