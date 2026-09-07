@@ -116,8 +116,8 @@ button { color: inherit; }
   left: 12px;
   bottom: 12px;
   z-index: 20;
-  width: 244px;
-  padding: 22px 14px 14px;
+  width: 300px;
+  padding: 42px 42px 28px;
   display: flex;
   flex-direction: column;
   background: var(--panel);
@@ -197,7 +197,7 @@ button { color: inherit; }
 .main-shell {
   position: relative;
   z-index: 1;
-  margin-left: 268px;
+  margin-left: 324px;
   min-height: 100vh;
   padding: 12px 12px 12px 0;
 }
@@ -215,7 +215,15 @@ button { color: inherit; }
 }
 .topbar-title { flex: 1; font-size: 14px; font-weight: 500; }
 .mobile-menu { display: none !important; }
-.app-main { min-height: calc(100vh - 82px); overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-xl); background: var(--panel); box-shadow: var(--shadow); }
+.app-main {
+  min-height: calc(100vh - 82px);
+  overflow: hidden;
+  padding: 36px 42px 42px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
 
 /* ---------- controls ---------- */
 
@@ -256,7 +264,7 @@ button { color: inherit; }
 
 /* ---------- page frame ---------- */
 
-.page { width: 100%; max-width: 1280px; margin: 0 auto; padding: 28px 28px 64px; }
+.page { width: 100%; max-width: 1280px; margin: 0 auto; padding: 8px 4px 32px; }
 .page-run { max-width: 1640px; }
 
 .view-header {
@@ -906,7 +914,7 @@ button { color: inherit; }
 
 @media (max-width: 760px) {
   .sidebar {
-    width: min(260px, calc(100vw - 48px));
+    width: min(300px, calc(100vw - 48px));
     visibility: hidden;
     transform: translateX(calc(-100% - 12px));
     transition: transform .15s ease, visibility 0s linear .15s;
